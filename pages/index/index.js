@@ -20,15 +20,18 @@ Page({
 
    ],
    activeId: 1,   //根据id切换字体颜色
-   lists:[]
+   lists:[],
+   isBackShow:false
   },
   //事件处理函数
   changeActiveId (e) {
 
     // console.log(e);
     let id = e.currentTarget.dataset.id
-
     this.setData({activeId: id})
+    //切换类型重新执行
+    this.setData({lists: []})
+    this.getLists()
   },
   //根据activeId获取数据中的 type
   getTypeById () {
@@ -42,10 +45,10 @@ Page({
   },
 
   //获取数据
-  getLists () {
+  getLists (type) {
 
     wx.request({
-        url: 'https://m.toutiao.com/list/?ac=wap&count=20&format=json_raw&as=A1A53AFF9ABB2CD&cp=5AFA9BA2EC2DEE1&_signature=XTrrwwAAB8AKDaOY8NEXVF0669&i=',  //接口地址
+        url: 'https://m.toutiao.com/list/?ac=wap&count=20&format=json_raw&as=A1A53AFF9ABB2CD&cp=5AFA9BA2EC2DEE1&_signature=XTrrwwAAB8AKDaOY8NEXVF0669&i=',  //接口地址 , 参数13位的时间戳需要转化10位
         data: {
         
           tag: this.getTypeById(),
@@ -56,9 +59,19 @@ Page({
             'content-type': 'application/json' // 默认值
         },
         success: (res)=> {  
-
           // console.log(res.data.data);
-          this.setData({ "lists": res.data.data }) 
+          let lists = [];
+          if(type==="down"){
+              lists = res.data.data.concat(this.data.lists);
+              //弹出信息
+              wx.showToast({title: `为您推荐了${res.data.data.length}篇文章`, duration: 800})
+              wx.stopPullDownRefresh();   //停止刷新
+          } else {
+            //上拉刷新往后加数据
+            lists = this.data.lists.concat(res.data.data);
+          }
+          this.setData({ lists }) 
+
         }
 
     })
@@ -67,8 +80,33 @@ Page({
   onLoad: function () {   //生命周期函数vue created
    this.getLists();
   },
-  getUserInfo: function(e) {
-    
-  
+  //监听用户下拉动作
+  onPullDownRefresh () {
+    this.getLists ('down')   
+  },
+  //下拉触底
+  onReachBottom () {
+    this.getLists()
+  },
+  onPageScroll (e) {
+    // console.log(e.scrollTop);
+    if (e.scrollTop>300 && !this.data.isBackShow) {
+      this.setData({isBackShow: true})
+    }
+    if (e.scrollTop<300 && this.data.isBackShow) {
+      this.setData({isBackShow: false})
+    }
+  },
+  goTop: function (e) {  // 一键回到顶部
+    if (wx.pageScrollTo) {
+       wx.pageScrollTo({
+         scrollTop: 0
+       })
+     } else {
+       wx.showModal({
+         title: '提示',
+         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+       })
+     }
   }
 })

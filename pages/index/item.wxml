@@ -1,0 +1,37 @@
+
+<template name = "common-item">
+    <view class="content-item" 
+      wx:for = "{{ lists }}" wx:key = "{{ item.item_id }}">
+
+      <view class="info-box">
+          <view class="title">{{ item.title }}</view>
+
+          <!-- 如果有三张图片的 -->
+          <view class="image_list" wx:if = "{{ item.image_list.length }}">
+              <image 
+               wx:for = "{{ item.image_list }}"
+               wx:key = "index" 
+               wx:for-item = "src"
+               src = " {{ src.url }} " />
+          </view>
+
+          <view class="info">
+            <view class="top">{{ item.label }}</view>
+            <view wx:if = "{{ item.hot === 1 }}" class="hot">热</view>
+            <view class="src">{{ item.source }}</view>
+            <view class="cmt">评论 {{item.comment_count}}</view>
+            <!-- <view class="time">时间</view> -->
+          </view> 
+
+      </view>
+      <!-- 如果侧边有一张图片 -->
+      <view wx:if = "{{ item.image_url }}" class="single-image">
+
+        <image src = "{{ item.image_url }}" />
+
+      </view>
+    </view>
+</template>
+<template name="video-item">
+    
+</template>
