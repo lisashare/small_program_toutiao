@@ -33,5 +33,23 @@
     </view>
 </template>
 <template name="video-item">
-    
+    <view class = "content-item video-item" wx:for ="{{lists}}" wx:key ="{{item.item_id}}">
+        
+        <view class = "info-box">
+          
+            <view class="image-box">
+                <view class="title">{{item.title}}</view>
+                <image src="{{item.large_image_url}}" />
+            </view>
+        
+
+            <view class ="info">
+                <view class = "top">{{item.label}}</view>
+                <view wx:if="{{item.hot === 1}}" class = "hot">热</view>
+                <view class = "cmd">{{item.source}}</view>
+                <view class = "pl">评论 {{item.comment_count}}</view>
+            </view>
+        </view>
+       
+    </view>
 </template>

@@ -1,4 +1,4 @@
 {
-  "component": true,
-  "usingComponents": {}
+  "onReachBottomDistance": 50,
+  "navigationBarTitleText": "搜索"
 }

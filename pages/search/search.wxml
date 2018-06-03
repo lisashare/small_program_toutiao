@@ -1,2 +1,28 @@
 <!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+
+<import src="../templates/item.wxml"/>
+
+<view class="page search">
+
+    <view class="weui-search-bar" id="searchBar">
+        <form class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <view class="weui-icon-search"></view>
+                <input bindconfirm="formSubmit" confirm-type="search" name="keyword" type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required/>
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </view>
+            
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </view>
+
+
+    <view class= "content-box">
+    
+        <!-- <template wx:if = "{{ !lists[0].video_id }}" is = "common-item" data="{{ lists: lists }}"></template> -->
+        <template is = "common-item" data="{{ lists: lists }}"></template>
+        <!-- <template wx:else  is = "video-item" data="{{lists: lists}}"></template> -->
+        
+    </view>
+
+</view>

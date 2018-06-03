@@ -1,6 +1,7 @@
 <!--index.wxml 小程序难在布局-->
 
-<import src="item.wxml"/>
+<import src="../templates/item.wxml"/>
+
 <view class="page index">
 <!-- 头部导航 -->
   <view class="navbar">
