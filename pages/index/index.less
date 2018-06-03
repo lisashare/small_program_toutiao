@@ -1,21 +1,88 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+// 头部导航
+.navbar {
+  position: fixed;
+  z-index: 999;
+  height:72rpx;
+  background:#f4f5f6;
+  // overflow:scroll;  使用这种方法滑动、惯性效果不好 scroll-veiw
+  width:100%;
+  scroll-view{
+    height:100%;
+  }
+  .navbar-content{
+    width:200%;
+    height:100%;
+    display: flex;
+  }
+  .navbar-item{
+    width:16.66%;
+    display: flex;
+    height:100%;
+    justify-content: center;
+    align-items: center;
+    color:#505050;
+    // font-size:32rpx;
+    &.active {
+      color: #d43d3d;
+    }
+  } 
+}
+// 内容盒子
+.content-box{
+  padding-top:75rpx;
+  .content-item{
+    margin:0 30rpx;
+    padding:32rpx 0;
+    border-bottom:1rpx solid rgba(221, 221, 221, 0.6);
+    display: flex;
+
+    .info{
+      margin-top: 12rpx;
+      font-size:22rpx;
+      color: #999999;
+      display: flex;
+      view{
+        margin-right:20rpx;
+      }
+      .hot,.top{
+        width:48rpx;
+        line-height:24rpx;
+        border-radius: 4rpx;
+        text-align: center;
+        border:1rpx solid rgba(248, 89, 89, 0.5);
+        color: #f85959;
+      }
+      .top:empty{
+        display: none;
+      }
+    }
+
+
+    .info-box{
+      flex-grow:1;
+      flex-shrink: 1;
+
+    }
+    .image_list{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 12rpx;
+      image{
+        width:33%;
+        height:147.66rpx;
+      }
+    }
+    .single-image{
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin-left: 20rpx;
+      image{
+        width: 227.7rpx;
+        height: 147.7rpx;
+      }
+    }
+  }
+
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}

@@ -1,14 +1,60 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-    <!-- block相当于vue template -->
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<!--index.wxml 小程序难在布局-->
+<view class="page index">
+<!-- 头部导航 -->
+  <view class="navbar">
+    <!-- 滚动 -->
+    <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+      <!-- 滚动内部需要再套一层 -->
+      <view class="navbar-content">
+        <!-- 内部循环的数据 -->
+        <view class="{{'navbar-item' + (activeId === item.id? ' active' : '') }}"
+          data-id = "{{ item.id }}"
+          bindtap = "changeActiveId"  
+          wx:for = "{{ navs }}" 
+          wx:key = "{{ item.id }}"
+          >
+          {{ item.title }}
+        </view>
+
+      </view>  
+
+    </scroll-view>
+
+  </view>  
+  <!-- 下方数据 -->
+
+  <view class="content-box">
+    <view class="content-item" 
+      wx:for = "{{ lists }}" wx:key = "{{ item.item_id }}">
+
+      <view class="info-box">
+          <view class="title">{{ item.title }}</view>
+
+          <!-- 如果有三张图片的 -->
+          <view class="image_list" wx:if = "{{ item.image_list.length }}">
+              <image 
+               wx:for = "{{ item.image_list }}"
+               wx:key = "index" 
+               wx:for-item = "src"
+               src = " {{ src.url }} " />
+          </view>
+
+          <view class="info">
+            <view class="top">{{ item.label }}</view>
+            <view wx:if = "{{ item.hot === 1 }}" class="hot">热</view>
+            <view class="src">{{ item.source }}</view>
+            <view class="cmt">评论 {{item.comment_count}}</view>
+            <!-- <view class="time">时间</view> -->
+          </view> 
+
+      </view>
+      <!-- 如果侧边有一张图片 -->
+      <view wx:if = "{{ item.image_url }}" class="single-image">
+
+        <image src = "{{ item.image_url }}" />
+
+      </view>
+    </view>
+
   </view>
 </view>

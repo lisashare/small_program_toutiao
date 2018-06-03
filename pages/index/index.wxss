@@ -1,0 +1,79 @@
+/**index.wxss**/
+.navbar {
+  position: fixed;
+  z-index: 999;
+  height: 72rpx;
+  background: #f4f5f6;
+  width: 100%;
+}
+.navbar scroll-view {
+  height: 100%;
+}
+.navbar .navbar-content {
+  width: 200%;
+  height: 100%;
+  display: flex;
+}
+.navbar .navbar-item {
+  width: 16.66%;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #505050;
+}
+.navbar .navbar-item.active {
+  color: #d43d3d;
+}
+.content-box {
+  padding-top: 75rpx;
+}
+.content-box .content-item {
+  margin: 0 30rpx;
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid rgba(221, 221, 221, 0.6);
+  display: flex;
+}
+.content-box .content-item .info {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #999999;
+  display: flex;
+}
+.content-box .content-item .info view {
+  margin-right: 20rpx;
+}
+.content-box .content-item .info .hot,
+.content-box .content-item .info .top {
+  width: 48rpx;
+  line-height: 24rpx;
+  border-radius: 4rpx;
+  text-align: center;
+  border: 1rpx solid rgba(248, 89, 89, 0.5);
+  color: #f85959;
+}
+.content-box .content-item .info .top:empty {
+  display: none;
+}
+.content-box .content-item .info-box {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.content-box .content-item .image_list {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12rpx;
+}
+.content-box .content-item .image_list image {
+  width: 33%;
+  height: 147.66rpx;
+}
+.content-box .content-item .single-image {
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-left: 20rpx;
+}
+.content-box .content-item .single-image image {
+  width: 227.7rpx;
+  height: 147.7rpx;
+}
