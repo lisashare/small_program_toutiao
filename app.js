@@ -1,7 +1,9 @@
 //app.js
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
+  onLaunch: function () {   
+    //生命周期函数，在进入小程序的时候出发，当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
+
+    // 展示本地存储能力，给本地存储里存入这次进入的时间（时间戳的格式）
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
@@ -12,6 +14,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -33,7 +36,7 @@ App({
       }
     })
   },
-  globalData: {
+  globalData: {   //相当于vuex store 存储全局状态
     userInfo: null
   }
 })

@@ -3,21 +3,21 @@
 const app = getApp()
 
 Page({
-  data: {
+  data: {  //挂载数据
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo') //判断能不能使用api
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.navigateTo({
+    wx.navigateTo({        //vue $router.push()
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function () {   //生命周期函数vue created
     if (app.globalData.userInfo) {
-      this.setData({
+      this.setData({      //react  setState
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })

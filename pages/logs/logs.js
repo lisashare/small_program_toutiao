@@ -1,4 +1,5 @@
 //logs.js
+//可以使用 commonJS 模块化开发规范
 const util = require('../../utils/util.js')
 
 Page({
