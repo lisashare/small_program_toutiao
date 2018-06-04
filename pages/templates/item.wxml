@@ -1,6 +1,6 @@
 
 <template name = "common-item">
-    <view class="content-item" 
+    <view class="content-item"  data-id = "{{item.item_id}}" bindtap="toDetail" 
       wx:for = "{{ lists }}" wx:key = "{{ item.item_id }}">
 
       <view class="info-box">

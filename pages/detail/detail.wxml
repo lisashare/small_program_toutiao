@@ -1,0 +1,5 @@
+<!--pages/detail/detail.wxml-->
+<view class="page detail">
+   <!-- <web-view src="https://www.baidu.com/"></web-view> -->
+   {{ content }}
+</view>

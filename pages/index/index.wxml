@@ -28,7 +28,7 @@
 
   <view class="content-box">
 
-    <template wx:if = "{{activeId !== 2}}" is = "common-item" data="{{lists: lists}}"></template>
+    <template wx:if = "{{activeId !== 2}}" is = "common-item" data="{{lists: lists,toDetail:toDetail}}"></template>
     
     <template wx:else is = "video-item" data="{{lists: lists}}"></template>
   </view>

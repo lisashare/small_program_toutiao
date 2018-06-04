@@ -108,5 +108,12 @@ Page({
          content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
        })
      }
+  },
+  //跳转到详情页面的方法,传参 detail  onLoad option接收
+  toDetail (e) {
+    // console.log(e);
+    wx.navigateTo({
+      url: '../detail/detail?id='+e.currentTarget.dataset.id
+    })
   }
 })
