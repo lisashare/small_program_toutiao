@@ -1,2 +1,25 @@
 <!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<view class="page mine">
+
+    <!-- <button wx:if = "{{ !userInfo }}" open-type = "getUserInfo" bindgetuserinfo = "getUserInfo">登录</button> -->
+    <view class="info-box">
+   
+        <button class="login"
+            type = "primary"
+            size = "mini"
+            wx:if = "{{ !userInfo }}"
+            open-type = "getUserInfo" bindgetuserinfo = "getUserInfo"
+
+        >登录</button>
+        
+        <block wx:else>
+
+            <view class="avatar-box">
+                <image class="avatarUrl-img" src = "{{ userInfo.avatarUrl }}"/>
+            </view>
+            <text class="nickname">{{ userInfo.nickName }}</text>
+            <button type="warn" size="mini" bindtap = "exit">注销</button>
+            
+        </block>
+    </view>
+</view>
